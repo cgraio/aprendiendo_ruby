@@ -21,4 +21,17 @@ class TestPila < Test::Unit::TestCase
 	def testPushPopOnStackReturnsPushedElement
 		assert_equal 1, ::Pila.new.push(1).pop
 	end
+
+	def testPopDropsTheTopOfTheStack
+		aPila = ::Pila.new
+		aPila.push(1).push(2)
+		aPila.pop
+		assert_equal 1, aPila.pop
+	end
+
+	def testStackIsEmptyAfterPopAllElements
+		aPila = ::Pila.new
+		aPila.push(1).pop
+		assert aPila.isEmpty
+	end
 end

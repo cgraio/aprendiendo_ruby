@@ -1,6 +1,7 @@
 class Pila
 	def initialize
 		@empty = true
+		@content = Array.new
 	end
 
 	def isEmpty
@@ -9,7 +10,7 @@ class Pila
 
 	def push(element)
 		@empty = false
-		@top = element
+		@content.push(element)
 		self
 	end
 
@@ -17,6 +18,11 @@ class Pila
 		if @empty
 			raise RuntimeError.new('Cannot do pop of empty stack')
 		end
-		@top
+		top = @content.last
+		@content.delete_at(@content.size - 1)
+		if @content.size == 0
+			@empty = true
+		end
+		top
 	end
 end
