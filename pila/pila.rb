@@ -1,28 +1,23 @@
+load 'pila_element.rb'
+load 'pila_null.rb'
+
 class Pila
 	def initialize
-		@empty = true
-		@content = Array.new
+		@head = Pila_Null.new
 	end
 
 	def isEmpty
-		@empty
+		@head.instance_of? Pila_Null
 	end
 
 	def push(element)
-		@empty = false
-		@content.push(element)
+		@head = Pila_Element.new(element, @head)
 		self
 	end
 
 	def pop
-		if @empty
-			raise RuntimeError.new('Cannot do pop of empty stack')
-		end
-		top = @content.last
-		@content.delete_at(@content.size - 1)
-		if @content.size == 0
-			@empty = true
-		end
+		top = @head.content
+		@head = @head.next
 		top
 	end
 end
